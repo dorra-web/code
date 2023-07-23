@@ -1,0 +1,38 @@
+{
+    "name": "LihatDiskon",
+    "short_name": "LihatDiskon",
+    "theme_color": "#004b8d",
+    "background_color": "#1855BE",
+    "display": "standalone",
+    "start_url": "https://www.lihatdiskon.com/",
+    "icons": [
+        {
+            "src": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEigKgZbriM3HBWl3Ly0sLvm85-MbG7Kw7HlCF_i7OjV5jfZArN9R5XGRZemd88DE-xfFGFeYgMGBTUiWuaoDtLaYYwFDOBfNr4_jUmFOEAmsKMZUVw8yp7Lq0HQSaMyaHqp31FNeCVNNUoo-iuwSXfLAxsClMzpKTTyCD_sOpzU-A1FKu7WQT2WtR2Gbs4/s192/bg-ld-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhl_HkmQ5dT0_0S4tvj9tDW1ReKiuzHKqX2n5yyJfOizcRq1vj8PbK_fS3RIEP9VRVW00OS-vF7pkf3r7q4b00p8EkJAe_37tD76BfAaR-cQHqabiE9RjfRL-y6aj_p77YBwfEB6br2JpnP0S3-5emB0ZYNieBiMwUXmqr9Gk868salN-h-E_0TQcyDFlc/s320/bg-ld-256x256.png",
+            "sizes": "256x256",
+            "type": "image/png"
+        },
+        {
+            "src": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiq4LPAh6nEj4M4v2k2JOZ5i_2whv0-SQ6hlKlPWEGrcqI8cVZS-VkcNAox8r6nnv4VYk0WcZbr_FyVFA4G-M1u_4lC8I9RpbnFj149X9WTzaFxKoDObF4AsTN5mu8aqt83livmTgJjYMGBWyhstFMbPy2jbmuI8Xrsn2sEpeioGpcvqw2u4EJPfHHa-d0/s320/bg-ld-384x384.png",
+            "sizes": "384x384",
+            "type": "image/png"
+        },
+        {
+            "src": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjRl3DiK_uL-U-7rrhT3YEKBVfxyR303DWFp2pZoLpBxQC0WUGjvOSjMThKzmvfPscbbC1mmnbhIpc3YksFNhzxr-eaAwCWN7wXOLny60blujrHK5fYgtb50U7UgYDKDEA2-yufn1UR05oxHFnyf52VDqGXF6ND5Nlx9H1WfSANqbBPx7hbRuMrXPz0ZS4/s1600/bg-ld-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        },
+        {
+            "src": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjRl3DiK_uL-U-7rrhT3YEKBVfxyR303DWFp2pZoLpBxQC0WUGjvOSjMThKzmvfPscbbC1mmnbhIpc3YksFNhzxr-eaAwCWN7wXOLny60blujrHK5fYgtb50U7UgYDKDEA2-yufn1UR05oxHFnyf52VDqGXF6ND5Nlx9H1WfSANqbBPx7hbRuMrXPz0ZS4/s1600/bg-ld-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ]
+}
+
+
