@@ -1,32 +1,36 @@
-// sw.js
+// nama file: service-worker.js
 
-// Nama cache untuk menyimpan aset situs
-const CACHE_NAME = "my-site-cache-v1";
-const urlsToCache = [
-  "https://www.lihatdiskon.com/", // Ganti dengan URL halaman utama situs Anda
-  "/styles/main.css", // Ganti dengan URL file CSS Anda
-  "/scripts/main.js", // Ganti dengan URL file JavaScript Anda
-  // Tambahkan URL aset lainnya yang ingin Anda cache
+// daftar file yang ingin di-cache
+const filesToCache = [
+  '/',
+  'https://www.lihatdiskon.com/',
+  'https://cdn.statically.io/gh/lihatdiskon/code/main/lihatdiskon-style.css',
+  'https://cdn.statically.io/gh/lihatdiskon/code/main/function-jquery.js',
+  'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjRl3DiK_uL-U-7rrhT3YEKBVfxyR303DWFp2pZoLpBxQC0WUGjvOSjMThKzmvfPscbbC1mmnbhIpc3YksFNhzxr-eaAwCWN7wXOLny60blujrHK5fYgtb50U7UgYDKDEA2-yufn1UR05oxHFnyf52VDqGXF6ND5Nlx9H1WfSANqbBPx7hbRuMrXPz0ZS4/s1600/bg-ld-512x512.png'
 ];
 
-// Install service worker dan menyimpan aset ke dalam cache
-self.addEventListener("install", function(event) {
+const staticCacheName = 'cache-v1';
+
+// event install
+self.addEventListener('install', event => {
+  console.log('Mencoba menginstal service worker dan cache data statis');
   event.waitUntil(
-    caches.open(CACHE_NAME).then(function(cache) {
-      console.log("Mengisi cache dengan aset...");
-      return cache.addAll(urlsToCache);
+    caches.open(staticCacheName)
+    .then(cache => {
+      return cache.addAll(filesToCache);
     })
   );
 });
 
-// Menghapus cache lama saat aktivasi
-self.addEventListener("activate", function(event) {
+// event activate
+self.addEventListener('activate', event => {
+  console.log('Mengaktifkan service worker baru');
+  const cacheWhitelist = [staticCacheName];
   event.waitUntil(
-    caches.keys().then(function(cacheNames) {
+    caches.keys().then(cacheNames => {
       return Promise.all(
-        cacheNames.map(function(cacheName) {
-          if (cacheName !== CACHE_NAME) {
-            console.log("Menghapus cache lama: " + cacheName);
+        cacheNames.map(cacheName => {
+          if (cacheWhitelist.indexOf(cacheName) === -1) {
             return caches.delete(cacheName);
           }
         })
@@ -35,16 +39,17 @@ self.addEventListener("activate", function(event) {
   );
 });
 
-// Intercept fetch events dan mengembalikan aset dari cache jika tersedia
-self.addEventListener("fetch", function(event) {
+// event fetch
+self.addEventListener('fetch', event => {
+  console.log('Mengambil:', event.request.url);
   event.respondWith(
-    caches.match(event.request).then(function(response) {
-      // Jika aset ditemukan dalam cache, kembalikan dari cache
+    caches.match(event.request).then(response => {
       if (response) {
+        console.log('Menemukan', event.request.url, 'di dalam cache');
         return response;
       }
-      // Jika aset tidak ditemukan dalam cache, lakukan fetch dari server
-      return fetch(event.request);
+      console.log('Jaringan permintaan untuk', event.request.url);
+      return fetch(event.request)
     })
   );
 });
