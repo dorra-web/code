@@ -1,50 +1,31 @@
-// sw.js
-
-// Nama cache untuk menyimpan aset situs
-const CACHE_NAME = "my-site-cache-v1";
+// File: sw.js
+const CACHE_NAME = "LihatDiskon Chace";
 const urlsToCache = [
-  "https://www.lihatdiskon.com/", // Ganti dengan URL halaman utama situs Anda
-  "/styles/main.css", // Ganti dengan URL file CSS Anda
-  "/scripts/main.js", // Ganti dengan URL file JavaScript Anda
-  // Tambahkan URL aset lainnya yang ingin Anda cache
+  "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEigKgZbriM3HBWl3Ly0sLvm85-MbG7Kw7HlCF_i7OjV5jfZArN9R5XGRZemd88DE-xfFGFeYgMGBTUiWuaoDtLaYYwFDOBfNr4_jUmFOEAmsKMZUVw8yp7Lq0HQSaMyaHqp31FNeCVNNUoo-iuwSXfLAxsClMzpKTTyCD_sOpzU-A1FKu7WQT2WtR2Gbs4/s192/bg-ld-192x192.png",
+  "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjRl3DiK_uL-U-7rrhT3YEKBVfxyR303DWFp2pZoLpBxQC0WUGjvOSjMThKzmvfPscbbC1mmnbhIpc3YksFNhzxr-eaAwCWN7wXOLny60blujrHK5fYgtb50U7UgYDKDEA2-yufn1UR05oxHFnyf52VDqGXF6ND5Nlx9H1WfSANqbBPx7hbRuMrXPz0ZS4/s1600/bg-ld-512x512.png",
+  "https://cdn.statically.io/gh/lihatdiskon/code/main/function-jquery.js",
+  "https://cdn.statically.io/gh/lihatdiskon/code/main/lihatdiskon-style.css",
+  // Tambahkan daftar URL aset yang ingin Anda cache untuk offline access
 ];
 
-// Install service worker dan menyimpan aset ke dalam cache
 self.addEventListener("install", function(event) {
   event.waitUntil(
-    caches.open(CACHE_NAME).then(function(cache) {
-      console.log("Mengisi cache dengan aset...");
-      return cache.addAll(urlsToCache);
-    })
+    caches.open(CACHE_NAME)
+      .then(function(cache) {
+        console.log("Cache opened");
+        return cache.addAll(urlsToCache);
+      })
   );
 });
 
-// Menghapus cache lama saat aktivasi
-self.addEventListener("activate", function(event) {
-  event.waitUntil(
-    caches.keys().then(function(cacheNames) {
-      return Promise.all(
-        cacheNames.map(function(cacheName) {
-          if (cacheName !== CACHE_NAME) {
-            console.log("Menghapus cache lama: " + cacheName);
-            return caches.delete(cacheName);
-          }
-        })
-      );
-    })
-  );
-});
-
-// Intercept fetch events dan mengembalikan aset dari cache jika tersedia
 self.addEventListener("fetch", function(event) {
   event.respondWith(
-    caches.match(event.request).then(function(response) {
-      // Jika aset ditemukan dalam cache, kembalikan dari cache
-      if (response) {
-        return response;
-      }
-      // Jika aset tidak ditemukan dalam cache, lakukan fetch dari server
-      return fetch(event.request);
-    })
+    caches.match(event.request)
+      .then(function(response) {
+        if (response) {
+          return response;
+        }
+        return fetch(event.request);
+      })
   );
 });
